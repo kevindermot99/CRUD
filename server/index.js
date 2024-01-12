@@ -42,7 +42,6 @@ app.put('/updateUser/:id', (req, res) => {
 })
 
 // delete api
-// update api
 app.delete('/deleteUser/:id', (req, res) => {
     const id = req.params.id;
     UserModel.findByIdAndDelete({ _id: id })
