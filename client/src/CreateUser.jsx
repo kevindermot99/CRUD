@@ -17,11 +17,12 @@ function CreateUser() {
     }
 
     return (
-        <div>
-            <Link to="/">Cancel</Link>
+        <div className='wrapper'>
+            <h1># Create User</h1>
+            <Link to="/" className='link'>Cancel</Link>
             <form onSubmit={Submit}>
-                <input type="text" onChange={(e) => setName(e.target.value)} placeholder='Enter Name' />
-                <button>Submit</button>
+                <input type="text" onChange={(e) => setName(e.target.value)} placeholder='Enter Name' required />
+                <button className='formbtn'>Create</button>
             </form>
         </div>
     )

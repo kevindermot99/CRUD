@@ -27,11 +27,12 @@ function UpdateUser() {
   }
 
   return (
-    <div>
-      <Link to="/">Cancel</Link>
+    <div className='wrapper'>
+      <h1># Update User</h1>
+      <Link to="/" className='link'>Cancel</Link>
       <form onSubmit={Update}>
         <input type="text" placeholder='Enter Name' value={name} onChange={(e) => setName(e.target.value)} />
-        <button>Update</button>
+        <button className='formbtn'>Update</button>
       </form>
     </div>
   )

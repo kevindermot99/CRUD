@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 function Users() {
     const [users, setUsers] = useState([])
@@ -12,23 +13,31 @@ function Users() {
     }, [])
 
     const handleDelete = (id) => {
-        axios.delete('http://localhost:3001/deleteUser/' + id)
+        var result = window.confirm("deleted permanently?");
+        if (result) {
+            axios.delete('http://localhost:3001/deleteUser/' + id)
             .then(res => {
                 console.log(res)
                 window.location.reload()
             })
             .catch(err => console.log(err))
+        }
+        else {
+            
+        }
+        
     }
 
     return (
-        <div>
-            <Link to="/create">Add +</Link>
-            <table border={1}>
+        <div className='wrapper'>
+            <h1>Simple CRUD Application with MERN</h1>
+            <Link to="/create" className='link'>+ Add User </Link>
+            <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th colSpan={2}>Actions</th>
+                        <th className='start'>UNIQUE ID</th>
+                        <th>NAME</th>
+                        <th className='end'>ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,8 +46,10 @@ function Users() {
                             return <tr>
                                 <td>{ user._id }</td>
                                 <td>{user.name}</td>
-                                <td><Link to={`/update/${user._id}`}>Update</Link></td>
-                                <td><button onClick={(e) => handleDelete(user._id)}>Delete</button></td>
+                                <td>
+                                    <Link className='actionbtn' to={`/update/${user._id}`} title='edit'>Edit</Link>
+                                    <button className='actionbtn danger' onClick={(e) => handleDelete(user._id)} title='delete'><RiDeleteBin5Line /></button>
+                                </td>
                             </tr>
                         })
                     }
